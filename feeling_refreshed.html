@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Hearts</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    button {
+      font-size: 24px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 30px;
+      color: red;
+      animation: fadeout 2s linear forwards;
+    }
+
+    @keyframes fadeout {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button onclick="createHeart()">ハートを出現させる</button>
+  <script>
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "❤️";
+
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight;
+
+      heart.style.left = `${x}px`;
+      heart.style.top = `${y}px`;
+
+      const colors = ["red", "pink", "purple", "orange", "yellow"];
+      heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        document.body.removeChild(heart);
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
